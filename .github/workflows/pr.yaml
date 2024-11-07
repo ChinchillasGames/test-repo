@@ -1,0 +1,17 @@
+name: Pull request build
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running PR build"
+
+  e2e-tests:
+    uses: ./.github/workflows/e2e.yaml
+    needs: [build]
